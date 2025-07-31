@@ -1,0 +1,315 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Create Atelier</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@300;400;500&family=Lato:wght@300&display=swap" rel="stylesheet">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        /* Custom CSS for the old money aesthetic */
+        html {
+            scroll-behavior: smooth;
+            scroll-padding-top: 100px; /* Adjust as needed for header height */
+        }
+
+        body {
+            font-family: 'Lato', sans-serif;
+            background-color: #FDFBF5; /* A very light, warm cream */
+            color: #5C5855; /* A soft, muted brown-gray */
+            font-weight: 300;
+        }
+
+        h1, h2, h3, h4, h5, h6 {
+            font-family: 'Cormorant Garamond', serif;
+            font-weight: 400;
+            color: #44413E; /* A darker, richer brown */
+        }
+
+        .brand-title {
+            font-size: 2rem;
+            letter-spacing: 0.2em;
+            text-transform: uppercase;
+        }
+
+        .product-title {
+            font-size: 3rem;
+        }
+
+        .section-title {
+            font-size: 2.5rem;
+            letter-spacing: 0.1em;
+            text-transform: uppercase;
+        }
+
+        .nav-link {
+            transition: color 0.3s ease;
+            position: relative;
+            padding-bottom: 4px;
+        }
+
+        .nav-link::after {
+            content: '';
+            position: absolute;
+            width: 0;
+            height: 1px;
+            display: block;
+            margin-top: 5px;
+            right: 0;
+            background: #A9A195; /* A soft, aged brass color */
+            transition: width 0.3s ease;
+            -webkit-transition: width 0.3s ease;
+        }
+
+        .nav-link:hover::after {
+            width: 100%;
+            left: 0;
+            background-color: #A9A195;
+        }
+
+        .shop-button {
+            border: 1px solid #A9A195;
+            color: #5C5855;
+            transition: background-color 0.4s ease, color 0.4s ease;
+        }
+
+        .shop-button:hover {
+            background-color: #A9A195;
+            color: #FDFBF5;
+        }
+        
+        /* Product image hover effect */
+        .product-image-container img {
+            transition: transform 0.5s ease-in-out;
+        }
+        .product-image-container:hover img {
+            transform: scale(1.05);
+        }
+
+        /* Scroll Animation Styles */
+        .scroll-animate {
+            opacity: 0;
+            transform: translateY(40px);
+            transition: opacity 1s cubic-bezier(0.165, 0.84, 0.44, 1), transform 1s cubic-bezier(0.165, 0.84, 0.44, 1);
+        }
+
+        .scroll-animate.is-visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        /* Staggered animation for children */
+        .scroll-animate.is-visible .animate-child {
+            transition-delay: 0.2s;
+        }
+        .scroll-animate.is-visible .animate-child:nth-child(2) {
+            transition-delay: 0.3s;
+        }
+        .scroll-animate.is-visible .animate-child:nth-child(3) {
+            transition-delay: 0.4s;
+        }
+
+        /* Gradient Backgrounds */
+        body {
+            background-image: linear-gradient(to bottom, #FDFBF5, #F4EFE3);
+        }
+
+        #shop {
+            background-image: linear-gradient(to bottom, #F9F6F0, #EFEAE1);
+        }
+
+    </style>
+</head>
+<body class="antialiased">
+
+    <header class="w-full py-8 px-4 sm:px-8 md:px-16 lg:px-24 scroll-animate">
+        <div class="container mx-auto flex justify-between items-center">
+            <h1 class="brand-title text-center md:text-left">Create Atelier</h1>
+            <nav class="hidden md:flex space-x-8 text-sm tracking-widest uppercase">
+                <a href="#shop" class="nav-link">Shop</a>
+                <a href="#journal" class="nav-link">Journal</a>
+                <a href="#about" class="nav-link">About</a>
+            </nav>
+            <div class="md:hidden">
+                <button id="mobile-menu-button" class="text-gray-500 hover:text-gray-600 focus:outline-none focus:text-gray-600">
+                    <svg class="h-6 w-6" fill="none" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewBox="0 0 24 24" stroke="currentColor">
+                        <path d="M4 6h16M4 12h16M4 18h16"></path>
+                    </svg>
+                </button>
+            </div>
+        </div>
+        <div id="mobile-menu" class="hidden md:hidden mt-4">
+            <a href="#shop" class="block py-2 px-4 text-sm hover:bg-gray-200">Shop</a>
+            <a href="#journal" class="block py-2 px-4 text-sm hover:bg-gray-200">Journal</a>
+            <a href="#about" class="block py-2 px-4 text-sm hover:bg-gray-200">About</a>
+        </div>
+    </header>
+
+    <main class="w-full py-12 md:py-24 px-4 sm:px-8 md:px-16 lg:px-24 scroll-animate">
+        <div class="container mx-auto grid grid-cols-1 md:grid-cols-5 gap-12 items-center">
+            
+            <div class="md:col-span-2 w-full h-[60vh] md:h-[75vh] bg-gray-200 rounded-lg overflow-hidden animate-child">
+                <img src="images/fleur.jpg" 
+                     alt="A relaxed fit linen shirt with floral embroidery"
+                     class="w-full h-full object-cover">
+            </div>
+
+            <div class="md:col-span-3 flex flex-col justify-center text-center md:text-left md:pl-16 animate-child">
+                <h2 class="product-title leading-tight">“Fleur”</h2>
+                <p class="mt-4 text-base md:text-lg max-w-xl mx-auto md:mx-0 leading-relaxed">
+                    Introducing — Our first exclusive drop, crafted from a premium linen blend fabric. This boxy & relaxed fit shirt with a cuban collar features a hand-drawn floral design, meticulously embroidered with cotton threads to ensure comfort and quality.
+                </p>
+                <div class="mt-8">
+                    <button class="shop-button uppercase tracking-widest font-light py-3 px-10 rounded-sm">
+                        Discover Fleur
+                    </button>
+                </div>
+            </div>
+
+        </div>
+    </main>
+
+    <section id="shop" class="w-full py-16 md:py-24 px-4 sm:px-8 md:px-16 lg:px-24 scroll-animate">
+        <div class="container mx-auto text-center">
+            <h2 class="section-title">Our Collection</h2>
+            <div class="mt-12 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-x-8 gap-y-12">
+                <div class="animate-child">
+                    <div class="w-full h-[50vh] md:h-[60vh] bg-gray-200 rounded-lg overflow-hidden product-image-container">
+                        <img src="images/linen-trouser.jpg" alt="The Linen Trouser" class="w-full h-full object-cover">
+                    </div>
+                    <h3 class="mt-5 text-xl font-medium font-serif">The Linen Trouser</h3>
+                    <p class="mt-1 text-base text-gray-500">$220</p>
+                    <div class="mt-4">
+                        <button class="shop-button uppercase tracking-widest font-light py-2 px-8 rounded-sm text-sm">Add to Bag</button>
+                    </div>
+                </div>
+                <div class="animate-child">
+                    <div class="w-full h-[50vh] md:h-[60vh] bg-gray-200 rounded-lg overflow-hidden product-image-container">
+                        <img src="images/silk-scarf.jpg" alt="The Silk Scarf" class="w-full h-full object-cover">
+                    </div>
+                    <h3 class="mt-5 text-xl font-medium font-serif">The Silk Scarf</h3>
+                    <p class="mt-1 text-base text-gray-500">$150</p>
+                    <div class="mt-4">
+                        <button class="shop-button uppercase tracking-widest font-light py-2 px-8 rounded-sm text-sm">Add to Bag</button>
+                    </div>
+                </div>
+                <div class="animate-child">
+                    <div class="w-full h-[50vh] md:h-[60vh] bg-gray-200 rounded-lg overflow-hidden product-image-container">
+                        <img src="images/cashmere-knit.jpg" alt="The Cashmere Knit" class="w-full h-full object-cover">
+                    </div>
+                    <h3 class="mt-5 text-xl font-medium font-serif">The Cashmere Knit</h3>
+                    <p class="mt-1 text-base text-gray-500">$350</p>
+                    <div class="mt-4">
+                        <button class="shop-button uppercase tracking-widest font-light py-2 px-8 rounded-sm text-sm">Add to Bag</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="journal" class="w-full py-20 md:py-24 px-4 sm:px-8 md:px-16 lg:px-24 scroll-animate">
+        <div class="container mx-auto text-center">
+            <h2 class="section-title">Journal</h2>
+            <p class="mt-8 text-lg max-w-2xl mx-auto leading-relaxed">
+                Discover the stories behind our collections, notes on sustainable style, and inspiration from our travels. Our journal is coming soon.
+            </p>
+        </div>
+    </section>
+
+    <section id="about" class="w-full py-20 md:py-24 px-4 sm:px-8 md:px-16 lg:px-24 scroll-animate">
+        <div class="container mx-auto text-center">
+            <h2 class="section-title">The Founders</h2>
+            <div class="mt-16 grid grid-cols-1 md:grid-cols-2 gap-16 md:gap-24 items-start max-w-4xl mx-auto">
+                <div class="flex flex-col items-center text-center animate-child">
+                    <div class="w-40 h-40 md:w-48 md:h-48 bg-gray-200 rounded-full overflow-hidden">
+                        <img src="images/alfe-alam.jpg" alt="Founder Alfe Alam" class="w-full h-full object-cover">
+                    </div>
+                    <h3 class="mt-6 text-2xl font-medium font-serif">Alfe Alam</h3>
+                    <p class="mt-3 text-base leading-relaxed max-w-xs">
+                        As the lead designer, Alfe's vision is rooted in creating pieces that blend modern minimalism with timeless elegance, ensuring every garment tells a story of artistry.
+                    </p>
+                </div>
+                <div class="flex flex-col items-center text-center animate-child">
+                    <div class="w-40 h-40 md:w-48 md:h-48 bg-gray-200 rounded-full overflow-hidden">
+                        <img src="images/tanvirul-islam.jpg" alt="Founder Tanvirul Islam" class="w-full h-full object-cover">
+                    </div>
+                    <h3 class="mt-6 text-2xl font-medium font-serif">Tanvirul Islam</h3>
+                    <p class="mt-3 text-base leading-relaxed max-w-xs">
+                        Tanvirul provides the strategic direction and business acumen that transforms creative concepts into the tangible, high-quality reality of Create Atelier.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <footer class="w-full bg-[#EFEAE1] py-12 px-4 sm:px-8 md:px-16 lg:px-24 text-center scroll-animate">
+        <div class="container mx-auto">
+            <h1 class="brand-title text-center text-2xl">Create Atelier</h1>
+            <div class="flex justify-center space-x-8 my-8 text-sm tracking-widest uppercase">
+                <a href="#shop" class="nav-link">Shop</a>
+                <a href="#journal" class="nav-link">Journal</a>
+                <a href="#about" class="nav-link">About</a>
+            </div>
+            <div class="text-xs text-gray-400 tracking-widest">
+                <p>&copy; <span id="year"></span> CREATE ATELIER. ALL RIGHTS RESERVED.</p>
+                <p class="mt-2">Designed & Developed by <a href="#" class="hover:text-gray-500">shafin</a></p>
+            </div>
+        </div>
+    </footer>
+
+
+    <script>
+        // Set current year in footer
+        document.getElementById('year').textContent = new Date().getFullYear();
+
+        // Mobile menu toggle
+        const mobileMenuButton = document.getElementById('mobile-menu-button');
+        const mobileMenu = document.getElementById('mobile-menu');
+
+        mobileMenuButton.addEventListener('click', () => {
+            mobileMenu.classList.toggle('hidden');
+        });
+
+
+        // Scroll Animation Logic
+        const scrollElements = document.querySelectorAll(".scroll-animate");
+
+        const elementInView = (el, dividend = 1) => {
+            const elementTop = el.getBoundingClientRect().top;
+            return (
+                elementTop <= (window.innerHeight || document.documentElement.clientHeight) / dividend
+            );
+        };
+
+        const displayScrollElement = (element) => {
+            element.classList.add("is-visible");
+        };
+
+        const hideScrollElement = (element) => {
+            element.classList.remove("is-visible");
+        }
+
+        const handleScrollAnimation = () => {
+            scrollElements.forEach((el) => {
+                if (elementInView(el, 1.25)) {
+                    displayScrollElement(el);
+                }
+            });
+        }
+
+        // Initialize elements that are already in view on load
+        window.addEventListener("load", () => {
+            handleScrollAnimation();
+        });
+        
+        // Handle scroll events
+        window.addEventListener("scroll", () => {
+            handleScrollAnimation();
+        });
+
+    </script>
+
+</body>
+</html>
